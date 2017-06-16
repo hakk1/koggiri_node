@@ -1,0 +1,52 @@
+doctype html
+html
+	head
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		title 실시간 그림판 채팅
+		script(type='text/javascript', src='http://code.jquery.com/jquery-1.12.4.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+		script(type='text/javascript', src='/socket.io/socket.io.js')
+		script(type='text/javascript', src='/javascript/canvas.js')
+		link(rel='stylesheet', href='/stylesheets/canvas.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css')
+	body
+		#container.container
+			#hiddenDiv.hidden
+				span#emp_id #{emp_id}
+				span#room_id #{room_id}
+			#imageDiv.col-md-8
+				canvas#canvas.canvas.canvas-canvas.col-md-10(width='600px', height='600px')
+				.col-md-2.canvas-menu
+					.row
+						select#colorSelecter.form-control
+							option(value='#000000') 검은색
+							option(value='#FF0000') 빨강색
+							option(value='#00FF00') 초록색
+							option(value='#0000FF') 파랑색
+							option(value='#FFFF00') 노란색
+							option(value='#00FFFF') 하늘색
+							option(value='#FF00FF') 핑크색
+					.row.penRow
+						span.glyphicon.glyphicon-pencil#penButton
+						span.glyphicon.glyphicon-erase#eraserButton
+					.row
+						span.explainSpan 펜굵기
+						input#widthSlider(type='range', min='0', max='20', value='5')
+					.row
+						span.explainSpan 투명도
+						input#opacitySlider(type='range', min='0', max='100', value='100')
+					.row
+						span.explainSpan 캡쳐 내용
+						textarea#captureExplain(cols='15', rows='4').form-control
+					.row
+						span#captureButton.glyphicon.glyphicon-camera
+						span#clearButton.glyphicon.glyphicon-trash
+					.row
+						ul#caputreList
+				.col-md-12.chat-people
+			#chatDiv.col-md-4
+				.row.chat-area
+				.row.chat-write
+					input#chatText.col-md-9.chat-write(type='text', name='chatWrite')
+					button#chatEnterButton.col-md-3.chat-submit.btn.btn-default 전송
