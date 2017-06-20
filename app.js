@@ -59,13 +59,15 @@ io.sockets.on('connection', function(socket){
 	
 	// 방 접속
 	socket.on('join',function(data){
+		console.log(data);
 		isInRoom = true;
 		// client가 발생시킨 이벤트의 룸id와 empid를 서버에 저장
 		room_id = data.room_id;
+		console.log(room_id);
 		emp_id = data.emp_id;
 		// 클라이언트 해당 방 접속
 		socket.join(room_id);
-		console.log(imgList[room_id]);
+		console.log(imgList[room_id]+"imgList");
 		io.sockets.to(this.id).emit('drawImage',imgList[room_id]);
 		
 		//사람이 없으면 방id에 해당하는 list배열 생성.
@@ -104,7 +106,7 @@ io.sockets.on('connection', function(socket){
 	socket.on('loadImage', function() {
 		io.sockets.emit('drawImage', imgList[room_id]);
 
-		console.log(empList[room_id]);
+		console.log(empList[room_id]+"empList");
 	});
 	//권한 제거
 	socket.on('addDrawDisable', function(data) {
@@ -125,7 +127,7 @@ io.sockets.on('connection', function(socket){
 			// 현재 접속자 명단에서 나간 emp_id 제거
 			var index = empList[room_id].indexOf(emp_id); 
 
-			empList[image_room_no].splice(index, 1);
+			empList[room_id].splice(index, 1);
 			
 			//업데이트된 현재 접속자 명단을 전송
 			io.sockets.to(room_id).emit('joinList',
