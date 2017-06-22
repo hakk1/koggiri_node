@@ -239,7 +239,7 @@ $(function(){
 			}
 		});
 	});
-	
+		
 	//권한 설정
 	$('.chat-people').on('click', 'span', function(){
 		if($(this).hasClass('drawDisable')){
@@ -253,6 +253,8 @@ $(function(){
 	//채팅 내용 추가
 	socket.on('chat', function(data){
 		appendChat(data);
+		
+		$('.row.chat-area').scrollTop(document.body.scrollHeight)
 	});
 	
 	//그림그리기

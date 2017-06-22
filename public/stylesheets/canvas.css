@@ -153,6 +153,7 @@ canvas {
     left: 15px;
     width: 950px;
     height: 300px;
+    overflow:scroll;
 } 
 
 #caputreList{
