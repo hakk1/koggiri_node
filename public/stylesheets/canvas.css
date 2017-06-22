@@ -57,7 +57,12 @@ canvas {
 	boarder: black 10px solid;
 	border-radius: 15px;
 	box-shadow: 1px 1px 1px 1px lightgray;
-	width : 345px;
+	position: relative;
+    top: -400px;
+    left: 15px;
+    width: 950px;
+    height: 300px;
+    overflow:scroll;
 }
 
 .canvas-menu{
@@ -146,15 +151,6 @@ canvas {
     padding: 5px;
     padding-top: 10px;
 }
-
-.row.chat-area{
-	position: relative;
-    top: -400px;
-    left: 15px;
-    width: 950px;
-    height: 300px;
-    overflow:scroll;
-} 
 
 #caputreList{
 	height: 0px;
