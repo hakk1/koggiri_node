@@ -52,11 +52,12 @@ canvas {
 	font-size: 8px;
 }
 .chat-area {
-	background-color: #cdedf1;
+	background-color: #e3e3e3;
 	overflow: scroll;
 	boarder: black 10px solid;
 	border-radius: 15px;
 	box-shadow: 1px 1px 1px 1px lightgray;
+	width : 345px;
 }
 
 .canvas-menu{
@@ -65,6 +66,7 @@ canvas {
 .canvas-menu>* {
 	margin: 10px 0px 10px 10px;
 	padding-left: 5px;
+	width: 125px;
 }
 
 .penRow {
@@ -85,6 +87,7 @@ canvas {
 	margin: 3px;
 	boarder: black 10px solid;
 	box-shadow: 0.3px 0.3px 0.3px 0.3px lightgray;
+	width : 500px;
 }
 .chatRegdate{
 	font-family: 'Noto Sans KR', sans-serif; 
@@ -102,4 +105,66 @@ canvas {
 .chat-area > div{
 	margin: 10px 0px 10px 0px; 
 	padding: 7px;
+}
+
+#container {
+    width: 970px;
+    padding: 0px;
+}
+
+#chatText{
+	position: relative;
+    top: -400px;
+    left: 15px;
+    width: 875px;
+}
+
+#chatEnterButton{
+	position: relative;
+    top: -400px;
+    left: 15px;
+    width: 77px;
+}
+
+#imageDiv{
+	width: 500px;
+	margin: 0px;
+}
+
+.col-md-2.canvas-menu{
+	width: 125px;
+	position : relative;
+	top: -600px;
+	left: 815px;
+}
+
+.col-md-12.chat-people{
+	width: 970px;
+    height: 40px;
+    position: relative;
+    top: -410px;
+    padding: 5px;
+    padding-top: 10px;
+}
+
+.row.chat-area{
+	position: relative;
+    top: -400px;
+    left: 15px;
+    width: 950px;
+    height: 300px;
+} 
+
+#caputreList{
+	height: 0px;
+}
+
+#captureButton{
+	position: relative;
+    left: 10px;
+}
+
+#clearButton{
+	position: relative;
+    left: 10px;
 }

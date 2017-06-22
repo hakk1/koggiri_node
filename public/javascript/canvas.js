@@ -2,7 +2,7 @@ var pageDefaultLeft;
 
 //Point 생성자 함수를 생성
 function Point(event, target){
-	this.x = event.pageX - $(target).position().left - 205;
+	this.x = event.pageX - $(target).position().left -120;
 	this.y = event.pageY - $(target).position().top;
 }
 
