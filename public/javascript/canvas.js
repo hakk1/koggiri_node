@@ -21,7 +21,7 @@ $(function(){
 	var socket = io.connect();
 	
 	//이미지 받아오는 요청
-	socket.emit('loadImage');
+	/*socket.emit('loadImage');*/
 	
 	//emp 정보 셋팅 //접속자 정보
 	$.ajax({

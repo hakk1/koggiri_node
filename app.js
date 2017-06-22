@@ -16,9 +16,11 @@ var app = express();
 // all environments
 app.use(session({
 	secret : 'koggiri',
-	resave : false,
-	saveUnitialized : true
-}))
+	proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.set('port', process.env.PORT || 8082);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -52,28 +54,32 @@ var empList = {};
 var io = socketio.listen(server);
 
 io.sockets.on('connection', function(socket){
+	console.log('소켓 connection');
 	var isInRoom = false;
 	
 	var emp_id;
 	var room_id;
 	
+	
+	
 	// 방 접속
 	socket.on('join',function(data){
+		console.log('소켓 join');
 		console.log(data);
 		isInRoom = true;
 		// client가 발생시킨 이벤트의 룸id와 empid를 서버에 저장
 		room_id = data.room_id;
-		console.log(room_id);
 		emp_id = data.emp_id;
 		// 클라이언트 해당 방 접속
 		socket.join(room_id);
-		console.log(imgList[room_id]+"imgList");
+		console.log(imgList[room_id]+" imgList");
 		io.sockets.to(this.id).emit('drawImage',imgList[room_id]);
 		
 		//사람이 없으면 방id에 해당하는 list배열 생성.
 		if(empList[room_id] == undefined){ 
 			empList[room_id] = [];
 		}
+		console.log("확인할려는거 "+emp_id)
 		// 방에 들어온 client의 emp_id를 list에 추가
 		empList[room_id].push(emp_id); 
 		// 해당 방에 현재 접속자 명단을 전송
@@ -83,46 +89,57 @@ io.sockets.on('connection', function(socket){
 	
 	// 방 생성
 	socket.on('create_room',function(data){
+		console.log('소켓 create_room');
 		io.sockets.emit('create_room',data)
+		
 	});
 	
 	// 그림 그리기
 	socket.on('draw', function(data) {
+
 		io.sockets.to(room_id).emit('line', data);
 	});
 	// 그림판 지우기
 	socket.on('clean', function() {
+		console.log('소켓 clean');
 		io.sockets.to(room_id).emit('clean');
 	});
 	// 캡쳐 이미지 추가
 	socket.on('drawImage', function(data) {
+		console.log('소켓 drawImage');
 		io.sockets.to(room_id).emit('drawImage', data.toString());
 	});
 	// 이미지 캡쳐
 	socket.on('saveImage', function(data) {
+		console.log('소켓 saveImage');
 		imgList[room_id] = data.toString();
 	});
 	// 이미지 불러오기
-	socket.on('loadImage', function() {
+	/*socket.on('loadImage', function() {
+		console.log('소켓 loadImage '+imgList[room_id]);
 		io.sockets.emit('drawImage', imgList[room_id]);
 
-		console.log(empList[room_id]+"empList");
-	});
+		
+	});*/
 	//권한 제거
 	socket.on('addDrawDisable', function(data) {
+		console.log('소켓 addDrawDisable');
 		io.sockets.to(room_id).emit('addDrawDisable', data);
 	});
 	//권한 추가
 	socket.on('removeDrawDisable', function(data) {
+		console.log('소켓 removeDrawDisable');
 		io.sockets.to(room_id).emit('removeDrawDisable', data);
 	});
 	// 채팅 발송
 	socket.on('chat', function(data) {
+		console.log('소켓 chat');
 		io.sockets.to(room_id).emit('chat', data);
 	});
 
 	//방 퇴장
 	socket.on('disconnect', function() {
+		console.log('소켓 disconnect');
 		if (isInRoom) {
 			// 현재 접속자 명단에서 나간 emp_id 제거
 			var index = empList[room_id].indexOf(emp_id); 
