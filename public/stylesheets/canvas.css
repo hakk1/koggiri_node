@@ -33,20 +33,21 @@ canvas {
 .myChat {
 	text-align: right;
 }
+
 .chatEmp{
 	font-family: 'Noto Sans KR', sans-serif; 
 	margin-bottom: 3px;
 }
 .chatContents {
 	font-family: 'Noto Sans KR', sans-serif; 
-	margin : 5px 0px 5px 0px;
+/* 	margin : 5px 0px 5px 0px; */
 	width: 100px;
 	word-break: break-all;
 	word-wrap: break-word;
 	border-radius: 5px;
 	padding: 3px;
 	margin-right: 7px;
-	background-color: #f3e894;
+	background-color: #ffffff;
 }
 .chatRegdate{
 	font-size: 8px;
@@ -164,4 +165,8 @@ canvas {
 #clearButton{
 	position: relative;
     left: 10px;
+}
+
+.myChat > .chatContents{
+	background-color: #f3e894;
 }

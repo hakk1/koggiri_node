@@ -5,7 +5,7 @@ $(document).ready(function(){
 	//emp 정보 셋팅 @
 	$.ajax({
 		type: 'get',
-		url: 'http://localhost:8081/imageRoom/getEmp',
+		url: 'http://192.168.0.63:8081/imageRoom/getEmp',
 		data: {
 			emp_id: $hiddenDiv.find('#emp_id').text() 
 		},
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	//맨 처음 페이지 접속시 db에 있는 방에 대한 정보 ajax 처리 @
 	$.ajax({
 		type: 'get',
-		url: 'http://localhost:8081/imageRoom/imageRoomLobby',
+		url: 'http://192.168.0.63:8081/imageRoom/imageRoomLobby',
 		success: function(data){
 			$.each(data, function(index, item){
 				createRoom(item);
@@ -81,7 +81,7 @@ $(document).ready(function(){
 		//@
 		$.ajax({
 			type : 'post',
-			url : 'http://localhost:8081/imageRoom/imageRoomDelete',
+			url : 'http://192.168.0.63:8081/imageRoom/imageRoomDelete',
 			data: {
 				room_id : that.parent().attr('data-index')
 			},
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	$('#createButton').click(function(){
 		$.ajax({
 			type: 'get',
-			url: 'http://localhost:8081/imageRoom/getRoomNo',
+			url: 'http://192.168.0.63:8081/imageRoom/getRoomNo',
 			success: function(room_id){
 				//방 이름에 대한 변수 선언
 				var room_nm = $('#room').val(); // 방이름 설정한거 가져옴
@@ -107,7 +107,7 @@ $(document).ready(function(){
 				//ajax로 spring에  방이름,emp_id,room_id 전송 @
 				$.ajax({
 					type: 'post',
-					url: 'http://localhost:8081/imageRoom/imageRoomLobby',
+					url: 'http://192.168.0.63:8081/imageRoom/imageRoomLobby',
 					data: {
 						room_nm: room_nm, 
 						emp_id: emp.emp_id, 
