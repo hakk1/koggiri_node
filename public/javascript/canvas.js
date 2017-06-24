@@ -26,7 +26,7 @@ $(function(){
 	//emp 정보 셋팅 //접속자 정보
 	$.ajax({
 		type: 'get',
-		url: 'http://192.168.0.63:8081/imageRoom/getEmp',
+		url: 'http://106.242.203.68:8081/imageRoom/getEmp',
 		data: {
 			emp_id: $hiddenDiv.find('#emp_id').text()
 		},
@@ -41,7 +41,7 @@ $(function(){
 	//이미지 캡쳐 정보들 가져오기 @@
 	$.ajax({
 		type: 'get',
-		url: 'http://192.168.0.63:8081/canvas/imageCapture',
+		url: 'http://106.242.203.68:8081/canvas/imageCapture',
 		data: {
 			room_id: $hiddenDiv.find('#room_id').text(),
 			emp_id: $hiddenDiv.find('#emp_id').text()
@@ -58,7 +58,7 @@ $(function(){
 	//채팅 정보들 가져오기 db에서
 	$.ajax({
 		type: 'get',
-		url: 'http://192.168.0.63:8081/chat/',
+		url: 'http://106.242.203.68:8081/chat/',
 		data: { // 보낼데이터
 			room_id: $hiddenDiv.find('#room_id').text()
 		},
@@ -148,13 +148,13 @@ $(function(){
 		var $captureExplain = $('#captureExplain');
 		
 		$.ajax({
-			url: 'http://192.168.0.63:8081/canvas/getImageCaptureNo',
+			url: 'http://106.242.203.68:8081/canvas/getImageCaptureNo',
 			type: 'get',
 			success: function(image_capture_no){
 			
 				$.ajax({
 					type: 'post',
-					url: 'http://192.168.0.63:8081/canvas/imageCapture',
+					url: 'http://106.242.203.68:8081/canvas/imageCapture',
 					data: {
 						image_capture_contents: canvas.toDataURL(),
 						image_capture_explain: $captureExplain.val(),
@@ -192,7 +192,7 @@ $(function(){
 		
 		$.ajax({
 			type : 'post',
-			url : 'http://192.168.0.63:8081/canvas/imageCaptureDelete',
+			url : 'http://106.242.203.68:8081/canvas/imageCaptureDelete',
 			data: {
 				image_capture_no : that.parent().attr('data-index')
 			},
@@ -209,7 +209,7 @@ $(function(){
 	//채팅
 	$('#chatEnterButton').on('click', function(event){
 		$.ajax({
-			url: 'http://192.168.0.63:8081/chat/getImageRoomHisNo',
+			url: 'http://106.242.203.68:8081/chat/getImageRoomHisNo',
 			type: 'get',
 			success: function(imageRoomHisNo){
 				var chatData = {
@@ -224,7 +224,7 @@ $(function(){
 				};
 				console.log(chatData);
 				$.ajax({
-					url: 'http://192.168.0.63:8081/chat/',
+					url: 'http://106.242.203.68:8081/chat/',
 					type: 'post',
 					
 					data: chatData, //보낼데이터
@@ -246,7 +246,7 @@ $(function(){
 		if (key.keyCode == 13) {
 			
 			$.ajax({
-				url: 'http://192.168.0.63:8081/chat/getImageRoomHisNo',
+				url: 'http://106.242.203.68:8081/chat/getImageRoomHisNo',
 				type: 'get',
 				success: function(imageRoomHisNo){
 					var chatData = {
@@ -261,7 +261,7 @@ $(function(){
 					};
 					console.log(chatData);
 					$.ajax({
-						url: 'http://192.168.0.63:8081/chat/',
+						url: 'http://106.242.203.68:8081/chat/',
 						type: 'post',
 						
 						data: chatData, //보낼데이터
@@ -328,7 +328,7 @@ $(function(){
 		$.each(joinList, function(index, item){
 			$.ajax({
 				type: 'get',
-				url: 'http://192.168.0.63:8081/imageRoom/getEmp',
+				url: 'http://106.242.203.68:8081/imageRoom/getEmp',
 				data: {
 					emp_id: item
 				},
